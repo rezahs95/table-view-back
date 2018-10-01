@@ -1,6 +1,8 @@
 package search;
 
 public class Request {
+    private int pageNumber;
+    private int resultNumber;
     private String tableName;
     private String firstName;
     private String email;
@@ -54,5 +56,21 @@ public class Request {
 
     public String getTableName() {
         return tableName;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public int getResultNumber() {
+        return resultNumber;
+    }
+
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public void setResultNumber(int resultNumber) {
+        this.resultNumber = resultNumber;
     }
 }
