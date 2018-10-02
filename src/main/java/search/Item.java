@@ -2,15 +2,15 @@ package search;
 
 public class Item {
     private int id;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private String familyName;
     private String email;
     private String date;
 
-    public Item(int id, String firstName, String lastName, String email, String date) {
+    public Item(int id, String name, String familyName, String email, String date) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
+        this.familyName = familyName;
         this.email = email;
         this.date = date;
     }
@@ -23,20 +23,20 @@ public class Item {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getFamilyName() {
+        return familyName;
     }
 
     public void setId(int id) {

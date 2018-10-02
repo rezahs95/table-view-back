@@ -1,5 +1,6 @@
 package search;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,11 +12,13 @@ import java.util.Arrays;
 import java.lang.Math;
 
 @RestController
+@CrossOrigin
 public class SearchController {
 
     private Statement sqlStmtObject = new Connect().getSqlStatement();
     private String sqlQuery = null;
 
+    @CrossOrigin
     @PostMapping(path = "/search", consumes = "application/json", produces = "application/json")
     public Response searchItems(@RequestBody Request requestObject) {
         this.sqlQuery = "SELECT * FROM " + requestObject.getTableName() + " WHERE FNAME LIKE '%" + requestObject.getFirstName() + "%' AND EMAIL LIKE '%" + requestObject.getEmail() + "%' AND CDATE BETWEEN TO_DATE('" + requestObject.getFrom() + "', 'YYYY-DD-MM') AND TO_DATE('" + requestObject.getTo()+"', 'YYYY-DD-MM')";
