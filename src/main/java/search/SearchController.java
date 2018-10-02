@@ -35,27 +35,45 @@ public class SearchController {
             int cnt = 0;
             String temp = "";
 
-            while (result.next()) {
-                if((cnt>=(pageNum-1)*resNum)&&(cnt<=(pageNum-1)*resNum+resNum-1)) {
-                    ids[cnt] = Integer.parseInt(result.getString(1));
-                    fnames[cnt] = result.getString(2);
-                    lnames[cnt] = result.getString(3);
-                    emails[cnt] = result.getString(4);
-                    dates[cnt] = result.getString(5);
-                    items[cnt] = new Item(ids[cnt], fnames[cnt], lnames[cnt], emails[cnt], dates[cnt]);
-                    cnt++;
-                    System.out.println(cnt+" In");
-                } else {
-                    temp = result.getString(2);
-                    cnt++;
-                    System.out.println(cnt+" Out");
+            if(requestObject.getPageNumber()==0) {
+                while (result.next()) {
+                        ids[cnt] = Integer.parseInt(result.getString(1));
+                        fnames[cnt] = result.getString(2);
+                        lnames[cnt] = result.getString(3);
+                        emails[cnt] = result.getString(4);
+                        dates[cnt] = result.getString(5);
+                        items[cnt] = new Item(ids[cnt], fnames[cnt], lnames[cnt], emails[cnt], dates[cnt]);
+                        cnt++;
+                        System.out.println(cnt + " In");
                 }
+                items = Arrays.copyOfRange(items, 0, cnt);
+                data.setPages((int) Math.ceil((double) cnt / (double) resNum));
+                data.setResults(cnt);
+                data.setItems(items);
+                return data;
+            } else {
+                while (result.next()) {
+                    if ((cnt >= (pageNum - 1) * resNum) && (cnt <= (pageNum - 1) * resNum + resNum - 1)) {
+                        ids[cnt] = Integer.parseInt(result.getString(1));
+                        fnames[cnt] = result.getString(2);
+                        lnames[cnt] = result.getString(3);
+                        emails[cnt] = result.getString(4);
+                        dates[cnt] = result.getString(5);
+                        items[cnt] = new Item(ids[cnt], fnames[cnt], lnames[cnt], emails[cnt], dates[cnt]);
+                        cnt++;
+                        System.out.println(cnt + " In");
+                    } else {
+                        temp = result.getString(2);
+                        cnt++;
+                        System.out.println(cnt + " Out");
+                    }
+                }
+                items = Arrays.copyOfRange(items, (pageNum - 1) * resNum, (pageNum - 1) * resNum + resNum);
+                data.setPages((int) Math.ceil((double) cnt / (double) resNum));
+                data.setResults(cnt);
+                data.setItems(items);
+                return data;
             }
-            items = Arrays.copyOfRange(items, (pageNum-1)*resNum, (pageNum-1)*resNum+resNum);
-            data.setPages((int) Math.ceil((double) cnt/(double) resNum));
-            data.setResults(cnt);
-            data.setItems(items);
-            return data;
         } catch (SQLException e) {
             System.out.println("Failed ! Error:"+e);
             return null;
