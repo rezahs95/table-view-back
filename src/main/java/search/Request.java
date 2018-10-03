@@ -4,26 +4,17 @@ public class Request {
     private int pageNumber;
     private int resultNumber;
     private String tableName;
-    private String firstName;
+    private String name;
     private String email;
-    private String from;
-    private String to;
+    private String startDate;
+    private String endDate;
 
-//    public Request(String tableName, String firstName, String email, String from, String to) {
-//        this.tableName = tableName;
-//        this.firstName = firstName;
-//        this.email = email;
-//        this.from = from;
-//        this.to = to;
-//    }
-
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
     public void setEmail(String email) {
@@ -34,20 +25,20 @@ public class Request {
         return email;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
-    public String getTo() {
-        return to;
+    public String getEndDate() {
+        return endDate;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
-    public String getFrom() {
-        return from;
+    public String getStartDate() {
+        return startDate;
     }
 
     public void setTableName(String tableName) {

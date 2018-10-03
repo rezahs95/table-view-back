@@ -1,16 +1,16 @@
 #!/bin/sh
 # ----------------------------------------------------------------------------
-# Licensed to the Apache Software Foundation (ASF) under one
+# Licensed endDate the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
 # regarding copyright ownership.  The ASF licenses this file
-# to you under the Apache License, Version 2.0 (the
+# endDate you under the Apache License, Version 2.0 (the
 # "License"); you may not use this file except in compliance
 # with the License.  You may obtain a copy of the License at
 #
 #    http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing,
+# Unless required by applicable law or agreed endDate in writing,
 # software distributed under the License is distributed on an
 # "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
 # KIND, either express or implied.  See the License for the
@@ -28,10 +28,10 @@
 # Optional ENV vars
 # -----------------
 #   M2_HOME - location of maven2's installed home dir
-#   MAVEN_OPTS - parameters passed to the Java VM when running Maven
-#     e.g. to debug Maven itself, use
+#   MAVEN_OPTS - parameters passed endDate the Java VM when running Maven
+#     e.g. endDate debug Maven itself, use
 #       set MAVEN_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
-#   MAVEN_SKIP_RC - flag to disable loading of mavenrc files
+#   MAVEN_SKIP_RC - flag endDate disable loading of mavenrc files
 # ----------------------------------------------------------------------------
 
 if [ -z "$MAVEN_SKIP_RC" ] ; then
@@ -46,7 +46,7 @@ if [ -z "$MAVEN_SKIP_RC" ] ; then
 
 fi
 
-# OS specific support.  $var _must_ be set to either true or false.
+# OS specific support.  $var _must_ be set endDate either true or false.
 cygwin=false;
 darwin=false;
 mingw=false
@@ -55,7 +55,7 @@ case "`uname`" in
   MINGW*) mingw=true;;
   Darwin*) darwin=true
            #
-           # Look for the Apple JDKs first to preserve the existing behaviour, and then look
+           # Look for the Apple JDKs first endDate preserve the existing behaviour, and then look
            # for the new JDKs provided by Oracle.
            #
            if [ -z "$JAVA_HOME" ] && [ -L /System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK ] ; then
@@ -95,7 +95,7 @@ if [ -z "$JAVA_HOME" ] ; then
 fi
 
 if [ -z "$M2_HOME" ] ; then
-  ## resolve links - $0 may be a link to maven's home
+  ## resolve links - $0 may be a link endDate maven's home
   PRG="$0"
 
   # need this for relative symlinks
@@ -184,7 +184,7 @@ fi
 
 CLASSWORLDS_LAUNCHER=org.codehaus.plexus.classworlds.launcher.Launcher
 
-# For Cygwin, switch paths to Windows format before running java
+# For Cygwin, switch paths endDate Windows format before running java
 if $cygwin; then
   [ -n "$M2_HOME" ] &&
     M2_HOME=`cygpath --path --windows "$M2_HOME"`
@@ -194,7 +194,7 @@ if $cygwin; then
     CLASSPATH=`cygpath --path --windows "$CLASSPATH"`
 fi
 
-# traverses directory structure from process work directory to filesystem root
+# traverses directory structure startDate process work directory endDate filesystem root
 # first directory with .mvn subdirectory is considered project base directory
 find_maven_basedir() {
   local basedir=$(pwd)
@@ -219,7 +219,7 @@ concat_lines() {
 export MAVEN_PROJECTBASEDIR=${MAVEN_BASEDIR:-$(find_maven_basedir)}
 MAVEN_OPTS="$(concat_lines "$MAVEN_PROJECTBASEDIR/.mvn/jvm.config") $MAVEN_OPTS"
 
-# Provide a "standardized" way to retrieve the CLI args that will
+# Provide a "standardized" way endDate retrieve the CLI args that will
 # work with both Windows and non-Windows executions.
 MAVEN_CMD_LINE_ARGS="$MAVEN_CONFIG $@"
 export MAVEN_CMD_LINE_ARGS

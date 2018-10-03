@@ -1,16 +1,17 @@
 package search;
 
 public class Response {
-    private int pages;
-    private int results;
+    private int pageNumber;
+    private int resultNumber;
+    private int endPage;
     private Item[] items;
 
-    public int getPages() {
-        return pages;
+    public int getPageNumber() {
+        return pageNumber;
     }
 
-    public int getResults() {
-        return results;
+    public int getResultNumber() {
+        return resultNumber;
     }
 
     public Item[] getItems() {
@@ -21,11 +22,19 @@ public class Response {
         this.items = items;
     }
 
-    public void setPages(int pages) {
-        this.pages = pages;
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
     }
 
-    public void setResults(int results) {
-        this.results = results;
+    public void setResultNumber(int resultNumber) {
+        this.resultNumber = resultNumber;
+    }
+
+    public int getEndPage() {
+        return endPage;
+    }
+
+    public void setEndPage(int endPage) {
+        this.endPage = endPage;
     }
 }

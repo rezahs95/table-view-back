@@ -21,7 +21,7 @@ public class SearchController {
     @CrossOrigin
     @PostMapping(path = "/search", consumes = "application/json", produces = "application/json")
     public Response searchItems(@RequestBody Request requestObject) {
-        this.sqlQuery = "SELECT * FROM " + requestObject.getTableName() + " WHERE FNAME LIKE '%" + requestObject.getFirstName() + "%' AND EMAIL LIKE '%" + requestObject.getEmail() + "%' AND CDATE BETWEEN TO_DATE('" + requestObject.getFrom() + "', 'YYYY-DD-MM') AND TO_DATE('" + requestObject.getTo()+"', 'YYYY-DD-MM')";
+        this.sqlQuery = "SELECT * FROM " + requestObject.getTableName() + " WHERE FNAME LIKE '%" + requestObject.getName() + "%' AND EMAIL LIKE '%" + requestObject.getEmail() + "%' AND CDATE BETWEEN TO_DATE('" + requestObject.getStartDate() + "', 'YYYY-DD-MM') AND TO_DATE('" + requestObject.getEndDate()+"', 'YYYY-DD-MM')";
         //this.sqlQuery = "SELECT * FROM " + requestObject.getTableName();
         System.out.println(requestObject.getTableName());
         try {
@@ -36,6 +36,7 @@ public class SearchController {
             Item[] items = new Item[100];
             Response data = new Response();
             int cnt = 0;
+            int cntin = 0;
             String temp = "";
 
             if(requestObject.getPageNumber()==0) {
@@ -50,9 +51,10 @@ public class SearchController {
                         System.out.println(cnt + " In");
                 }
                 items = Arrays.copyOfRange(items, 0, cnt);
-                data.setPages((int) Math.ceil((double) cnt / (double) resNum));
-                data.setResults(cnt);
+                data.setPageNumber((int) Math.ceil((double) cnt / (double) resNum));
+                data.setResultNumber(cnt);
                 data.setItems(items);
+                data.setEndPage(requestObject.getPageNumber());
                 return data;
             } else {
                 while (result.next()) {
@@ -64,6 +66,7 @@ public class SearchController {
                         dates[cnt] = result.getString(5);
                         items[cnt] = new Item(ids[cnt], fnames[cnt], lnames[cnt], emails[cnt], dates[cnt]);
                         cnt++;
+                        cntin++;
                         System.out.println(cnt + " In");
                     } else {
                         temp = result.getString(2);
@@ -71,9 +74,10 @@ public class SearchController {
                         System.out.println(cnt + " Out");
                     }
                 }
-                items = Arrays.copyOfRange(items, (pageNum - 1) * resNum, (pageNum - 1) * resNum + resNum);
-                data.setPages((int) Math.ceil((double) cnt / (double) resNum));
-                data.setResults(cnt);
+                items = Arrays.copyOfRange(items, (pageNum - 1) * resNum, (pageNum - 1) * resNum + cntin);
+                data.setPageNumber((int) Math.ceil((double) cnt / (double) resNum));
+                data.setResultNumber(cnt);
+                data.setEndPage(requestObject.getPageNumber());
                 data.setItems(items);
                 return data;
             }
